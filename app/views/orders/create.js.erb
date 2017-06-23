@@ -1,0 +1,4 @@
+$('#new_order').remove();
+$('#new_link').show();
+$('#incomplete_orders').append('<%= j render(@order) %>');
+$('#edit_order_<%= @order.id %>').submitOnCheck();

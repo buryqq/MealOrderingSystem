@@ -1,0 +1,47 @@
+<%= form_for(@order) do |f| %>   <!-- , remote: true -->
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.radio_button(:status, "open") %>
+  <%= f.label(:status_open, "open") %>
+
+  <%= f.radio_button(:status, "finalized") %>
+  <%= f.label(:status_open, "finalized") %>
+
+  <%= f.radio_button(:status, "ordered") %>
+  <%= f.label(:status_open, "ordered") %>
+
+  <%= f.radio_button(:status, "delivered") %>
+  <%= f.label(:status_open, "delivered") %>
+
+ <div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+   </div>  
+
+
+
+
+
+  <%= f.fields_for :meals do |meals_for_form| %>
+    <%= render 'meal_fields', f: meals_for_form %>
+  <% end %>
+  <%= link_to_add_fields "Add Meal", f, :meals %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

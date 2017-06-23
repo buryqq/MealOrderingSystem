@@ -1,0 +1,17 @@
+<%= form_for order, remote: true do |f| %>
+
+  <%= f.radio_button(:status, "finalized") %>
+  <%= f.label(:status_open, "finalized") %>
+
+  <%= f.radio_button(:status, "ordered") %>
+  <%= f.label(:status_open, "ordered") %>
+
+  <%= f.radio_button(:status, "delivered") %>
+  <%= f.label(:status_open, "delivered") %>
+
+
+   <%= f.submit "Update status" %>
+  <%= f.label :complete, order.name %>
+  <td><%= link_to "Edit", edit_order_path(order), remote: true, class: "btn btn-default" %></td>
+  <%= link_to "(remove)", order, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+<% end %>
