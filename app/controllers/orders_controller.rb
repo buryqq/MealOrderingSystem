@@ -50,10 +50,12 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
  
-    @order.update_attributes!(order_params)
-
-    redirect_to orders_url
-
+    @order.update_attributes(order_params)
+if @order.save
+      redirect_to orders_url, notice: 'Order was successfully edited.'
+    else
+      render :edit
+end
   end
 
   # DELETE /orders/1

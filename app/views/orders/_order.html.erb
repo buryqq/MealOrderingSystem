@@ -1,17 +1,54 @@
 <%= form_for order, remote: true do |f| %>
 
-  <%= f.radio_button(:status, "finalized") %>
+
+
+ <!--  <%= f.radio_button(:status, "finalized") %>
   <%= f.label(:status_open, "finalized") %>
 
   <%= f.radio_button(:status, "ordered") %>
   <%= f.label(:status_open, "ordered") %>
 
   <%= f.radio_button(:status, "delivered") %>
-  <%= f.label(:status_open, "delivered") %>
+  <%= f.label(:status_open, "delivered") %> -->
 
-
-   <%= f.submit "Update status" %>
   <%= f.label :complete, order.name %>
-  <td><%= link_to "Edit", edit_order_path(order), remote: true, class: "btn btn-default" %></td>
-  <%= link_to "(remove)", order, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
-<% end %>
+  
+   <% if order.status == 'open' %>
+
+
+  <%= link_to_add_fields "Add Meal", f, :meals %>
+
+ 
+  <%= link_to "(remove order)", order, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+
+    
+
+<%end%>
+
+
+<%= f.select :status, ['open', 'finalized', 'delivered', 'ordered']%>
+
+
+
+
+   <%= f.submit "Update order" %>
+  
+ <!--  <td><%= link_to "Edit", edit_order_path(order), remote: true, class: "btn btn-default" %></td> -->
+
+<table class="table">  
+<tr>
+ <th>Meals</th>
+ </tr>
+<tr>
+ <td><%= order.meals.pluck(:name).join('      ') %></td>
+ </tr>
+ <tr>
+ <th>Prices</th>
+ </tr>
+ <tr>
+ <td><%= order.meals.pluck(:price).join('      ') %></td>
+ </tr>
+</table>
+ 
+ <% end %>
+ 

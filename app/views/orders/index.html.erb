@@ -15,39 +15,7 @@
 </div>
 
 
-<%= Order.count %>
 
-
-<p>
-  <div class="col-md-12 text-center">
- <h3><label class="label label-default">Tweets</label></h3>
-</div>
- </p>
-  <div class="row">
-        <div class="col-md-12">
-          <table class="table">
-  <thead>
- <p>
-  <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Meals names</th>
-      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
- 
-    <tr>
- <% @orders.each do |order| if @orders.any? %>
-      
-         <td><%= order.name %></td>
-        <td><%= order.status %></td>
-         <td><%= order.meals.pluck(:name).join(' ') %></td>
-      </tr>
-           </p>    
-  <% end %>
-  <% end %>
-</table>
 
 
 
