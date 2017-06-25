@@ -50,11 +50,11 @@ class OrdersController < ApplicationController
   def update
  
     @order.update_attributes(order_params)
-if @order.save
+ if @order.save
       redirect_to orders_url, notice: 'Order was successfully edited.'
-    else
+ else
       render :edit
-end
+ end
   end
 
   # DELETE /orders/1

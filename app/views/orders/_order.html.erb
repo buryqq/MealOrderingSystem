@@ -1,17 +1,6 @@
 <%= form_for order, remote: true do |f| %>
 
-
-
- <!--  <%= f.radio_button(:status, "finalized") %>
-  <%= f.label(:status_open, "finalized") %>
-
-  <%= f.radio_button(:status, "ordered") %>
-  <%= f.label(:status_open, "ordered") %>
-
-  <%= f.radio_button(:status, "delivered") %>
-  <%= f.label(:status_open, "delivered") %> -->
-
-  <%= f.label :complete, order.name %>
+  <%= f.label :complete, order.name, style: 'font-size:160%; background-color: #00ff00;' %>
   
    <% if order.status == 'open' %>
 
@@ -21,34 +10,28 @@
  
   <%= link_to "(remove order)", order, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
 
-    
-
 <%end%>
-
 
 <%= f.select :status, ['open', 'finalized', 'delivered', 'ordered']%>
 
-
-
-
    <%= f.submit "Update order" %>
   
- <!--  <td><%= link_to "Edit", edit_order_path(order), remote: true, class: "btn btn-default" %></td> -->
 
 <h4>Meals</h4>
-<table class="table">  
-<tr>
- <th>User</th>
- <th>Meal</th>
- <th>Price</th>
-</tr>
-<% order.meals.each do |meal| %>
-  <tr>
-    <td><%= meal.user.name %></td>
-    <td><%= meal.name %></td>
-    <td><%= meal.price %></td>
-  </tr>
-</table>
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Meal</th>
+      <th>Price</th>
+    </tr>
+  <% order.meals.each do |meal| %>
+    <tr>
+      <td><%= meal.user.name %></td>
+      <td><%= meal.name %></td>
+      <td><%= meal.price %></td>
+    </tr>
+  </table>
+
   <% end %>
- <% end %>
+<% end %>
  
