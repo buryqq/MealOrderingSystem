@@ -40,6 +40,7 @@ gem 'bootstrap-sass'
 gem 'omniauth-facebook'
 gem "omniauth-github", '1.1.1'
 gem 'figaro'
+gem 'pg'
 
 
 group :development, :test do
