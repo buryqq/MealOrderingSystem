@@ -35,20 +35,20 @@
   
  <!--  <td><%= link_to "Edit", edit_order_path(order), remote: true, class: "btn btn-default" %></td> -->
 
+<h4>Meals</h4>
 <table class="table">  
 <tr>
- <th>Meals</th>
- </tr>
-<tr>
- <td><%= order.meals.pluck(:name).join('      ') %></td>
- </tr>
- <tr>
- <th>Prices</th>
- </tr>
- <tr>
- <td><%= order.meals.pluck(:price).join('      ') %></td>
- </tr>
+ <th>User</th>
+ <th>Meal</th>
+ <th>Price</th>
+</tr>
+<% order.meals.each do |meal| %>
+  <tr>
+    <td><%= meal.user.name %></td>
+    <td><%= meal.name %></td>
+    <td><%= meal.price %></td>
+  </tr>
 </table>
- 
+  <% end %>
  <% end %>
  

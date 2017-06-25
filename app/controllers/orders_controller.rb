@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
     @incomplete_orders = Order.where(status: "open")
     @complete_orders = Order.where(status: ["finalized","ordered","delivered"])
 
