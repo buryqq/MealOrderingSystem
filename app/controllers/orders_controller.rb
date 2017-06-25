@@ -1,18 +1,16 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: %i[show edit update destroy]
 
   # GET /orders
   # GET /orders.json
   def index
-    @incomplete_orders = Order.where(status: "open")
-    @complete_orders = Order.where(status: ["finalized","ordered","delivered"])
-
+    @incomplete_orders = Order.where(status: 'open')
+    @complete_orders = Order.where(status: %w[finalized ordered delivered])
   end
 
   # GET /orders/1
   # GET /orders/1.json
-  def show
-  end
+  def show; end
 
   # GET /orders/new
   def new
@@ -21,20 +19,19 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /orders
   # POST /orders.json
-#   def create
-#     @order = Order.new
-# respond_to do |f|
-#   f.html {
-#     redirect_to orders_url
-#   }
-#   f.js
-# end
-#   end
+  #   def create
+  #     @order = Order.new
+  # respond_to do |f|
+  #   f.html {
+  #     redirect_to orders_url
+  #   }
+  #   f.js
+  # end
+  #   end
 
   def create
     @order = Order.new(order_params)
@@ -48,13 +45,12 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
- 
     @order.update_attributes(order_params)
- if @order.save
+    if @order.save
       redirect_to orders_url, notice: 'Order was successfully edited.'
- else
+    else
       render :edit
- end
+    end
   end
 
   # DELETE /orders/1
@@ -65,17 +61,17 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
-    
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:name, :status, :user_id, meals_attributes: [ :id, :name, :price, :order_id , :user_id, :_destroy])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:name, :status, :user_id, meals_attributes: %i[id name price order_id user_id _destroy])
+  end
 end
