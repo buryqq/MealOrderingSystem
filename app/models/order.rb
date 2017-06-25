@@ -3,7 +3,6 @@ class Order < ApplicationRecord
   validates_presence_of :status
   validates_presence_of :user_id
 
-
   has_many :meals, inverse_of: :order
   accepts_nested_attributes_for :meals, allow_destroy: true
 
