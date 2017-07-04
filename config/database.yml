@@ -5,10 +5,10 @@ default: &default
  
 development:
   <<: *default
-  database: myapp_development
+  database: mealorderingsystem_development
 test:
   <<: *default
-  database: myapp_test
+  database: mealorderingsystem_test
 production:
   <<: *default
   database: myapp_production
